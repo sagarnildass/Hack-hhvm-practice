@@ -20,5 +20,9 @@
         "allow-plugins": {
             "hhvm/hhvm-autoload": true
         }
+    },
+    "require-dev": {
+        "hhvm/hacktest": "^2.4",
+        "facebook/fbexpect": "^2.9"
     }
 }
