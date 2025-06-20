@@ -1,0 +1,24 @@
+{
+    "name": "sagarnildass/3_project_structure",
+    "description": "Test project full",
+    "autoload": {
+        "psr-4": {
+            "Sagarnildass\\3ProjectStructure\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Sagarnil Das",
+            "email": "sagarnildass@gmail.com"
+        }
+    ],
+    "require": {
+        "hhvm/hhvm-autoload": "^3.3",
+        "hhvm/hsl": "^4.108"
+    },
+    "config": {
+        "allow-plugins": {
+            "hhvm/hhvm-autoload": true
+        }
+    }
+}
