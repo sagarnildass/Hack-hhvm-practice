@@ -31,11 +31,30 @@ final class TaskManager {
     return $this->tasks;
   }
 
-  public function addTask(string $description): void {
+  public async function addTask(string $description): Awaitable<void> {
     $highest_id = Math\max(Dict\keys($this->tasks)) ?? 0;
     $new_id = $highest_id + 1;
 
     $new_task = new Task($new_id, $description, false);
     $this->tasks[$new_id] = $new_task;
+
+    await $this->saveTasks();
+  }
+
+  private async function saveTasks(): Awaitable<void> {
+    $data_to_save = vec[];
+    foreach ($this->tasks as $task) {
+      // Note the mapping from class properties to JSON keys.
+      $data_to_save[] = dict[
+        'id' => $task->ID,
+        'description' => $task->description,
+        'is_completed' => $task->status,
+      ];
+    }
+
+    // JSON_PRETTY_PRINT makes the file easy for humans to read.
+    $json_string = Json\encode_with_options($data_to_save, \JSON_PRETTY_PRINT);
+
+    await File\write_contents_async($this->storage_path, $json_string);
   }
 }
