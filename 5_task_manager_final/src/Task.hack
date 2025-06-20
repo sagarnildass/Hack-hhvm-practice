@@ -6,4 +6,4 @@ final class Task {
     public string $description,
     public bool $is_completed,
   ) {}
-}
+} 
