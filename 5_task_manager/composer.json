@@ -1,0 +1,24 @@
+{
+    "name": "sagarnildass/5_task_manager",
+    "description": "A simple Task manager project with Hack",
+    "autoload": {
+        "psr-4": {
+            "Sagarnildass\\5TaskManager\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Sagarnil Das",
+            "email": "sagarnildass@gmail.com"
+        }
+    ],
+    "require": {
+        "hhvm/hsl": "^4.108",
+        "hhvm/hhvm-autoload": "^3.3"
+    },
+    "config": {
+        "allow-plugins": {
+            "hhvm/hhvm-autoload": true
+        }
+    }
+}
