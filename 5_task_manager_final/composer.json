@@ -1,0 +1,24 @@
+{
+    "name": "task-manager/app",
+    "description": "A simple command-line task manager built in Hack.",
+    "type": "project",
+    "license": "MIT",
+    "require": {
+        "hhvm/hhvm-autoload": "^3.2",
+        "hhvm/hsl": "^4.108"
+    },
+    "autoload": {
+        "psr-4": {
+            "TaskManager\\": "src/"
+        }
+    },
+    "require-dev": {
+        "hhvm/hacktest": "^2.4",
+        "facebook/fbexpect": "^2.9"
+    },
+    "config": {
+        "allow-plugins": {
+            "hhvm/hhvm-autoload": true
+        }
+    }
+}
