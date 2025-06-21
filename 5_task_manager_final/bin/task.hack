@@ -21,7 +21,46 @@ function main(): void {
       $manager->addTask($description);
       echo "Task added: \"".$description."\"\n";
       break;
+    case 'complete':
+      $id_str = $args[1] ?? null;
+      if ($id_str === null) {
+        echo "Error: 'complete' command requires a task ID.\n";
+        echo "Usage: hhvm bin/task.hack complete <id>\n";
+        return;
+      }
 
+      $task_id = \HH\Lib\Str\to_int($id_str);
+      if ($task_id === null) {
+        echo "Error: Invalid task ID provided.\n";
+        return;
+      }
+
+      if ($manager->markTaskAsComplete($task_id)) {
+        echo "Task {$task_id} marked as complete.\n";
+      } else {
+        echo "Error: Task with ID {$task_id} not found.\n";
+      }
+      break;
+    case 'delete':
+      $id_str = $args[1] ?? null;
+      if ($id_str === null) {
+        echo "Error: 'delete' command requires a task ID.\n";
+        echo "Usage: hhvm bin/task.hack delete <id>\n";
+        return;
+      } 
+
+      $task_id = \HH\Lib\Str\to_int($id_str);
+      if ($task_id === null) {
+        echo "Error: Invalid task ID provided.\n";
+        return;
+      }
+
+      if ($manager->deleteTask($task_id)) {
+        echo "Task {$task_id} deleted.\n";
+      } else {
+        echo "Error: Task with ID {$task_id} not found.\n";
+      }
+      break;
     case 'list':
     case null: // Default case when no command is given
       $all_tasks = $manager->getTasks();

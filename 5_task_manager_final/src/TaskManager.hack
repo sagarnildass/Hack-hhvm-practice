@@ -1,6 +1,8 @@
 namespace TaskManager;
 
 use TaskManager\Data\Task;
+use HH\Lib\C;
+use HH\Lib\Dict;
 
 final class TaskManager {
   private dict<int, Task> $tasks;
@@ -71,5 +73,35 @@ final class TaskManager {
 
     $json_string = \json_encode($data_to_save, \JSON_PRETTY_PRINT);
     \file_put_contents($this->storage_path, $json_string);
+  }
+
+  public function markTaskAsComplete(int $id): bool {
+    $contains_key = C\contains_key($this->tasks, $id);
+
+    if ($contains_key) {
+      $original_task = $this->tasks[$id];
+      $original_task_description = $original_task->description;
+
+      $this->tasks[$id] = new Task($id, $original_task_description, true);
+      $this->saveTasks();
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public function deleteTask(int $id): bool {
+    $contains_key = C\contains_key($this->tasks, $id);
+
+    if ($contains_key) {
+      $this->tasks = Dict\filter_with_key(
+        $this->tasks,
+        ($k, $_) ==> $k !== $id,
+      );
+      $this->saveTasks();
+      return true;
+    } else {
+      return false;
+    }
   }
 } 
