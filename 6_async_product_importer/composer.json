@@ -1,0 +1,12 @@
+{
+  "name": "yourname/async-product-importer",
+  "description": "Async Product Feed Importer in Hack",
+  "require": {
+    "hhvm/hsl": "^4.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "AsyncProductImporter\\": "src/"
+    }
+  }
+}
