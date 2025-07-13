@@ -21,7 +21,7 @@ async function main(): Awaitable<void> {
 
   $start_time = \microtime(true);
 
-  list($user_data, $page_data) = await Vec\from_async(vec[
+  list($user_data, $page_data) = await \HH\Asio\v(vec[
     fetch_user_data(),
     fetch_page_data(),
   ]);

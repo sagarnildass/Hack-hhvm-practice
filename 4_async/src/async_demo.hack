@@ -3,7 +3,7 @@ use namespace HH\Lib\IO;
 
 async function fetch_data(): Awaitable<string> {
   // Simulate a network request by sleeping for 1 second
-  await \HH\sleep_async(\HH\Duration::fromSeconds(1));
+  await \HH\Asio\usleep(1000000);
   return "Data fetched successfully!";
 }
 
